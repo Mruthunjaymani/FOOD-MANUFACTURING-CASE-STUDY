@@ -38,29 +38,4 @@ Opening and closing stocks are fixed at 500 t for every oil.
 | `r[i,j] ≥ 0` | tons | Oil *i* refined (and sold) in month *j* |
 | `b[i,j] ∈ {0,1}` | – | 1 ⇔ oil *i* is selected in month *j* |
 
-### Objective
-\[
-\max \; \underbrace{150\sum_{i,j} r_{i,j}}_{\text{revenue}}
-\;-\;
-\underbrace{\sum_{i,j} c_{i,j}\,x_{i,j}}_{\text{buying}}
-\;-\;
-\underbrace{5\sum_{i,j} e_{i,j}}_{\text{holding}}
-\]
 
-### Key Constraints (high-level)
-1. **Inventory flow** \(e_{i,j}=s_{i,j}+x_{i,j}-r_{i,j}\)  
-2. **Capacity** \(\sum_{i\in\text{Veg}} r_{i,j}\le200,\;
-                 \sum_{i\in\text{NonVeg}} r_{i,j}\le250\)  
-3. **Hardness bounds** \(3\le \frac{\sum_i h_i r_{i,j}}{\sum_i r_{i,j}}\le6\)  
-4. **“At most 3 oils”** \(\sum_i b_{i,j}\le3\)  
-5. **Link `r`–`b`** \(20\,b_{i,j}\le r_{i,j}\le1000\,b_{i,j}\)  
-6. **Veg ⇒ Oil 3** \(b_{\text{Veg 1},j}\le b_{\text{Oil 3},j}\),
-   \(b_{\text{Veg 2},j}\le b_{\text{Oil 3},j}\)
-
----
-
-## Repo Structure
-
-.
-├─ food_blending_gurobi.py   # full, commented model
-└─ README.md                 # you’re reading it
